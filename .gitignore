@@ -1,0 +1,6 @@
+*.sql
+.vscode
+bin
+obj
+*.json
+*.sln
