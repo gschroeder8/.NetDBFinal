@@ -90,7 +90,7 @@ while (true)
                 var category = db.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
                 if (category == null)
                 {
-                    Console.WriteLine("Category not found");
+                    logger.Error("Category not found");
                     break;
                 }
 
@@ -110,7 +110,7 @@ while (true)
                 db.Products.Add(newProduct);
                 db.SaveChanges();
 
-                Console.WriteLine("Product added successfully");
+                logger.Info("Product added successfully");
                 break;
             case "4":
                 Console.WriteLine("Enter the product ID or name to edit: ");
@@ -197,7 +197,7 @@ while (true)
                 db.Categories.Add(newCategory);
                 db.SaveChanges();
 
-                Console.WriteLine("Category added successfully");
+                logger.Info("Category added successfully");
                 break;
             case "9":
                 Console.WriteLine("Enter the category ID or name to edit: ");
@@ -233,13 +233,12 @@ while (true)
                 var categ = db.Categories.Include(c => c.Products).FirstOrDefault(c => c.CategoryId == categoId);
                 if (categ == null)
                 {
-                    Console.WriteLine("Category not found");
+                    logger.Error("Category not found");
                     break;
                 }
 
                 if (categ.Products.Any())
                 {
-                    Console.WriteLine("Cannot delete this category");
                     logger.Error("Cannot delete this category");
                     logger.Info("Category cannot be deleted with products stored");
                     break;
@@ -253,7 +252,7 @@ while (true)
                 db.Categories.Remove(categ);
                 db.SaveChanges();
 
-                Console.WriteLine("Category deleted successfully");
+                logger.Info("Category deleted successfully");
 
                 break;
             case "11":
